@@ -1,13 +1,13 @@
+#!/usr/bin/python3.5
 from socket import *
-import socket
+#Pega o ip da interface
+getip = socket(AF_INET, SOCK_DGRAM)
+getip.connect(("8.8.8.8", 80))
+ip = getip.getsockname()[0]
+getip.close()
+print(ip)
 
-sessao = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sessao.connect(("8.8.8.8", 80))
-print(sessao.getsockname()[0])
-ip = sessao.getsockname()[0]
-sessao.close()
-
-serverHost = "10.8.43.245"
+serverHost = ip
 serverPort = 50007
 
 resposta = ""
