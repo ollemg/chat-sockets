@@ -1,7 +1,7 @@
 from socket import *
 
 serverHost = "10.8.43.245"
-serverPort = 51234
+serverPort = 50007
 
 resposta = ""
 

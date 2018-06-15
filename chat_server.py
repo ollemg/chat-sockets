@@ -2,7 +2,7 @@ from socket import *
 
 hostServidor = '10.8.43.245'
 #hostServidor = '127.0.0.1'
-portaServidor = 51234
+portaServidor = 50007
 
 #Objeto Servidor Criado
 socketServidor = socket(AF_INET, SOCK_STREAM)
