@@ -1,4 +1,11 @@
 from socket import *
+import socket
+
+sessao = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sessao.connect(("8.8.8.8", 80))
+print(sessao.getsockname()[0])
+ip = sessao.getsockname()[0]
+sessao.close()
 
 serverHost = "10.8.43.245"
 serverPort = 50007
