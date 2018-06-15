@@ -3,28 +3,32 @@ from socket import *
 serverHost = "10.8.43.245"
 serverPort = 50007
 
-resposta = ""
-
-nome = input("Informe seu Nome: ")
+name = input("Informe seu Nome: ")
 
 while True:
-    if resposta != "":
-        print("Resposta: ", resposta)
-
-    envio = input("Digite sua mensagem:")
+    send = input("Digite sua mensagem:")
 
     socketClient = socket(AF_INET, SOCK_STREAM)
     socketClient.connect((serverHost, serverPort))
 
-    envio = ("%s disse: " %nome + envio)
-    binario = str.encode(envio)
-    #for line in envio:
-    socketClient.send(binario)
+    send = ("%s disse: " %name + send)
+    bin = str.encode(send)
+    #for line in send:
+    socketClient.send(bin)
 
     idSession = socketClient.recv(30)
-    resposta = socketClient.recv(1024)
 
-    print("Resposta: ", resposta)
-    print("ID: ", idSession)
+    reply = socketClient.recv(1024)
 
-socketClient.close()
+    with open('historico.txt', 'a+') as hist:
+        hist.write("\n")
+        hist.write(str(send))
+    hist.close()
+
+    with open('historico.txt', 'r') as talk:
+        chat = talk.readlines()
+    talk.close()
+
+    print("Resposta: ", chat)
+
+    socketClient.close()
