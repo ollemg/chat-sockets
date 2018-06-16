@@ -7,7 +7,6 @@ ip = getip.getsockname()[0]
 print(ip)
 
 hostServidor = ip
-# hostServidor = '127.0.0.1'
 portaServidor = 50007
 
 #Objeto Servidor Criado
@@ -18,7 +17,7 @@ socketServidor.bind((hostServidor, portaServidor))
 
 while True:
     #Na escuta...resposta = socketClient.recv(1024)
-    socketServidor.listen(10)
+    socketServidor.listen(0)
 
     #servidor aceita solicitacao?
     #sim, retorna: a conexao e o "id" do cliente
