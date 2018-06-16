@@ -19,35 +19,36 @@ class Send:
   return self.new
 
 #função esperar - Thread
-def esperar(tcp,send,host='localhost',port=5000):
- destino=(host,port)
- #conecta a um servidor
- tcp.connect(destino)
+def esperar(tcp,send,host='',port=5000):
+ origem=(host,port)
+ #cria um vinculo
+ tcp.bind(origem)
+ #deixa em espera
+ tcp.listen(0)
 
- while send.loop():
-  print('Conectado a ',host,'.')
+ while True:
+  #aceita um conexão
+  con,cliente=tcp.accept()
+  print('Cliente ',cliente,' conectado!')
   #atribui a conexão ao manipulador
-  send.con=tcp
-  while send.loop():
+  send.con=con
+
+  while True:
    #aceita uma mensagem
-   msg=tcp.recv(1024)
+   msg=con.recv(1024)
    if not msg: break
    print(str(msg,'utf-8'))
 
 if __name__ == '__main__':
- print('Digite o nome ou IP do servidor(localhost): ')
- host=input()
-
- if host=='':
-  host = '127.0.0.1'
-
  #cria um socket
  tcp=socket(AF_INET,SOCK_STREAM)
  send=Send()
  #cria um Thread e usa a função esperar com dois argumentos
- processo=Thread(target=esperar,args=(tcp,send,host))
+ processo=Thread(target=esperar,args=(tcp,send))
  processo.start()
- print('')
+
+ print('Iniciando o servidor de chat!')
+ print('Aguarde alguém conectar!')
 
  msg=input()
  while True:
