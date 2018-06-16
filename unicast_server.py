@@ -24,7 +24,7 @@ def esperar(tcp,send,host='',port=5000):
  #cria um vinculo
  tcp.bind(origem)
  #deixa em espera
- tcp.listen(1)
+ tcp.listen(0)
 
  while True:
   #aceita um conexão
