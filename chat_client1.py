@@ -1,7 +1,8 @@
 #!/usr/bin/python3.5
 from socket import *
-
-serverHost = "10.8.43.245"
+# serverHost = "127.0.0.1"
+#ip cloud
+serverHost = "130.211.185.95"
 serverPort = 50007
 
 name = input("Informe seu Nome: ")
