@@ -1,5 +1,4 @@
 #!/usr/bin/python3.5
-# import socket
 from socket import *
 #Pega o ip da interface
 getip = socket(AF_INET, SOCK_DGRAM)
