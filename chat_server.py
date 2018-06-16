@@ -1,7 +1,13 @@
+#!/usr/bin/python3.5
 from socket import *
+#Pega o ip da interface
+getip = socket(AF_INET, SOCK_DGRAM)
+getip.connect(("8.8.8.8", 80))
+ip = getip.getsockname()[0]
+print(ip)
 
-hostServidor = '10.8.43.245'
-#hostServidor = '127.0.0.1'
+hostServidor = ip
+# hostServidor = '127.0.0.1'
 portaServidor = 50007
 
 #Objeto Servidor Criado
@@ -29,4 +35,6 @@ while True:
     connection.send(idSession)
     connection.send(data)
 
-#connection.close()
+connection.close()
+socketServidor.close()
+getip.clone()
