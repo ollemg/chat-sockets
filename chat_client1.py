@@ -1,14 +1,21 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python3.6
 from socket import *
-# serverHost = "127.0.0.1"
-#ip cloud
-serverHost = "130.211.185.95"
+#Pega o ip da interface
+getip = socket(AF_INET, SOCK_DGRAM)
+getip.connect(("8.8.8.8", 80))
+ip = getip.getsockname()[0]
+
+serverHost = ip
 serverPort = 50007
 
 name = input("Informe seu Nome: ")
+print("Digite 'sair' para fechar!")
 
 while True:
-    send = input("Digite sua mensagem:")
+    send = input("Digite sua mensagem: ")
+
+    if send == 'sair' or send == 'SAIR':
+        break
 
     socketClient = socket(AF_INET, SOCK_STREAM)
     socketClient.connect((serverHost, serverPort))
@@ -34,3 +41,4 @@ while True:
     print("Resposta: ", chat)
 
     socketClient.close()
+getip.clone()
